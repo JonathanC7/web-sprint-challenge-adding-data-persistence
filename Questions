@@ -1,0 +1,11 @@
+Explain the difference between Relational Databases and SQL.
+    They are the same thing they use tables to structure data in a similar manner.
+
+Why do tables need a primary key?
+    It needs it so the program can differantiate between tables.
+
+What is the name given to a table column that references the primary key on another table.
+    Foreign Key.
+
+What do we need in order to have a many to many relationship between two tables.
+    We need more than one key from one table to relate to more than one key on another table.

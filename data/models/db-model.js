@@ -47,7 +47,10 @@ function addResource(resource){
 // Tasks
 
 function getTasks(){
-    return db('tasks');
+    return db('tasks')
+        .join('projects')
+        .select('projects.name', 'projects.description as projectDescription', 'tasks.description as taskDescription', 'tasks.notes', 'projects.id')
+        .orderBy('projects.id')
 }
 
 function getTaskById(id){
@@ -59,6 +62,6 @@ function getTaskById(id){
 function addTask(task){
     return db('tasks').insert(task)
         .then(ids => {
-            return findTaskById(ids[0]);
+            return getTaskById(ids[0]);
         })
 }

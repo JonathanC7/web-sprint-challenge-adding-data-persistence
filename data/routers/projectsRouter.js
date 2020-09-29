@@ -51,14 +51,14 @@ router.post('/resources', (req, res) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({message: 'Failed to add resource', error: err})
+            res.status(500).json({message: 'Failed to add resource, the project may not exist.', error: err})
         })
 })
 
 // Requests for tasks
 
 // GET
-router.get('/task', (req, res) => {
+router.get('/tasks', (req, res) => {
     db.getTasks()
         .then(tasks => {
             res.json(tasks);
@@ -70,12 +70,14 @@ router.get('/task', (req, res) => {
 
 // POST 
 router.post('/tasks', (req, res) => {
-    db.addTask(req.body)
+    const taskData = req.body;
+    db.addTask(taskData)
         .then(task => {
             res.status(200).json(task)
         })
         .catch(err => {
-            res.status(500).json({message: 'Failed to add task.', error: err})
+            console.log(err);
+            res.status(500).json({message: 'Failed to add task, the project may not exist.', error: err})
         })
 })
 
